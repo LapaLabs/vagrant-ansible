@@ -1,0 +1,15 @@
+---
+-   name: Update Advanced Packaging Tool (APT)
+    sudo: yes
+    apt: update_cache=yes
+
+-   name: Insult users with sudo
+    sudo: yes
+    lineinfile: dest=/etc/sudoers
+                regexp='Defaults\s+insults'
+                line='Defaults insults'
+
+-   name: Install packages
+    sudo: yes
+    apt: name={{ item }} state=latest
+    with_items: linux_easter_eggs_packages

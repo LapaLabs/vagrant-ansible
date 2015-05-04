@@ -1,0 +1,5 @@
+---
+-   name: Install system packages
+    sudo: yes
+    apt: name={{ item }} state=latest
+    with_items: app_packages

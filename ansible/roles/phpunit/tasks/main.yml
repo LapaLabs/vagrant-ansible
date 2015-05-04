@@ -1,0 +1,6 @@
+---
+-   name: Install PHPUnit testing framework for PHP
+    sudo: yes
+    shell: curl -sSO https://phar.phpunit.de/phpunit.phar | php && chmod +x phpunit.phar && mv phpunit.phar /usr/local/bin/phpunit
+    args:
+        creates: /usr/local/bin/phpunit

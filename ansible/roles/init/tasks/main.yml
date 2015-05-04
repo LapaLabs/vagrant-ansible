@@ -1,0 +1,17 @@
+---
+-   name: Update Advanced Packaging Tool (APT)
+    sudo: yes
+    apt: update_cache=yes
+
+-   name: Install system packages
+    sudo: yes
+    apt: name={{ item }} state=latest
+    with_items: init_packages
+
+-   name: Configure the timezone
+    sudo: yes
+    template: src=timezone.tpl dest=/etc/timezone
+
+-   name: More configure the timezone
+    sudo: yes
+    file: src=/usr/share/zoneinfo/{{ timezone }} dest=/etc/localtime state=link force=yes backup=yes

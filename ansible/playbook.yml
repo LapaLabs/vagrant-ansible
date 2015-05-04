@@ -1,0 +1,75 @@
+---
+-   name: Vagrant provisioning using Ansible Playbook for Ubuntu 14.04
+    hosts: all
+    sudo: yes
+    vars:
+        # Init
+        timezone: Europe/Kiev
+        init_packages:
+            - curl
+            - wget
+            - git
+        # PHP
+        php5_ppa: ppa:ondrej/php5-5.6
+        php5_timezone: Europe/Kiev
+        php5_display_errors: "On"
+        php5_error_reporting: E_ALL
+        php5_mbstring_func_overload: 0
+        php5_xdebug_max_nesting_level: 250
+        php5_post_max_size: 32M
+        php5_upload_max_filesize: 32M
+        php5_packages:
+            # php5 - will be installed by default
+            # php5-fpm - will be installed by default with php5-fpm role
+            # php5-cli - will be installed by default with php5-cli role
+            - php5-sqlite # used by Symfony Demo App as default data storage
+            - php5-mysql # could be used by Symfony Demo App as alternative data storage
+            - php5-intl # required by Symfony
+            - php5-xdebug # optional, used for convenience debug
+        # Nginx
+        nginx_packages: []
+            # nginx - will be installed by default
+        nginx_sites:
+            symfony-demo:
+                source_config_template: symfony-standard # Nginx template name for Symfony Framework
+                server_name: demo.symfony.localhost www.demo.symfony.localhost
+                root: /var/www/html/web
+                index: app_dev.php app.php
+                default_front_controller_name: app_dev
+        # MySQL
+        mysql_packages:
+            # mysql-server - will be installed by default
+            - python-mysqldb # required to create database
+        mysql_databases:
+            symfony-demo:
+                name: symfony-demo
+                user: user
+                password: userpass
+        # NPM
+        npm_packages:
+            # npm - will be installed by default
+            - bower
+            - uglify-js
+            - uglifycss
+        # App
+        app_packages: []
+        # Linux Easter Eggs
+        linux_easter_eggs_packages:
+            - sl
+            - cowsay
+            - fortunes
+
+    roles:
+        - init
+        - php5
+        - php5-fpm
+        - php5-cli
+        - nginx # @TODO symlink hardcode replace with file module
+        - mysql
+        - npm
+        - symfony-installer
+        - composer
+        - phpmyadmin
+        - phpunit
+        - app
+        - linux-easter-eggs # develop with a smile ;)

@@ -1,0 +1,17 @@
+---
+-   name: Add PHP PPA repository
+    sudo: yes
+    apt_repository: repo={{ php5_ppa }}
+
+-   name: Update Advanced Packaging Tool (APT)
+    sudo: yes
+    apt: update_cache=yes
+
+-   name: Install php5 package
+    sudo: yes
+    apt: name=php5 state=latest
+
+-   name: Install php5 packages
+    sudo: yes
+    apt: name={{ item }} state=latest
+    with_items: php5_packages

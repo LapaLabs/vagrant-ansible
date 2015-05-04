@@ -1,0 +1,4 @@
+---
+-   name: Install phpMyAdmin database manager
+    sudo: yes
+    apt: name=phpmyadmin state=latest

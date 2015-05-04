@@ -1,0 +1,9 @@
+---
+-   name: Install php5-cli package
+    sudo: yes
+    apt: name=php5-cli state=latest
+
+-   name: Ensure date.timezone is set to specified value in cli php.ini
+    lineinfile: dest=/etc/php5/cli/php.ini
+                regexp='date.timezone ='
+                line='date.timezone = {{ php5_timezone }}'

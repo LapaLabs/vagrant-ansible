@@ -1,0 +1,9 @@
+---
+-   name: Install Node Package Manager (npm)
+    sudo: yes
+    apt: name=npm state=latest
+
+-   name: Install npm packages
+    sudo: yes
+    npm: name={{ item }} global=yes state=latest
+    with_items: npm_packages

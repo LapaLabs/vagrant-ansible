@@ -1,0 +1,6 @@
+---
+-   name: Install Composer package manager for PHP
+    sudo: yes
+    shell: curl -sS https://getcomposer.org/installer | php && chmod +x composer.phar && mv composer.phar /usr/local/bin/composer
+    args:
+        creates: /usr/local/bin/composer
