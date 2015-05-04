@@ -6,6 +6,13 @@ VAGRANTFILE_API_VERSION = "2"
 ENV["VAGRANT_DEFAULT_PROVIDER"] = "parallels"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  # Vagrant Hostmanager plugin
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = true
+  config.hostmanager.include_offline = true
+
+  config.vm.hostname = "demo.symfony.localhost"
+
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.

@@ -2,6 +2,13 @@
 
 The Symfony Demo Application example of vagrant provisioning using various separate Ansible playbook roles based on Ubuntu 14.04 box for Parallels virtualization.
 
+## Precondition
+
+Need to install a few Vagrant plugins before to use `vagrant up`:
+
+* [Vagrant Parallels Provider](http://parallels.github.io/vagrant-parallels/)
+* [Vagrant Hostmanager](https://github.com/smdahlen/vagrant-hostmanager)
+
 ## Role List
 
 * init
