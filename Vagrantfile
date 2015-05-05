@@ -3,7 +3,7 @@
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
-ENV["VAGRANT_DEFAULT_PROVIDER"] = "parallels"
+#ENV["VAGRANT_DEFAULT_PROVIDER"] = "parallels" # The "parallels" or "virtualbox" providers are available
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Vagrant Hostmanager plugin
@@ -11,14 +11,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.hostmanager.manage_host = true
   config.hostmanager.include_offline = true
 
-  config.vm.hostname = "demo.symfony.localhost"
-
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
+  config.vm.hostname = "demo.symfony.localhost"
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "parallels/ubuntu-14.04"
+  config.vm.box = "ubuntu/trusty64" # Use "virtualbox" box by default
+
+  # Override default VirtualBox VM box with Parallels if Parallels provider is used
+  config.vm.provider "parallels" do |p, override|
+    override.vm.box = "parallels/ubuntu-14.04"
+  end
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -51,16 +55,25 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
-  # Example for VirtualBox:
+  # Example for Parallels:
   config.vm.provider "parallels" do |p|
     p.name = "demo.symfony.localhost"
-    p.cpus = 1
     p.memory = 2048
+    p.cpus = 1
     p.update_guest_tools = true # Allow auto-update plugin
     p.optimize_power_consumption = false # Override "Longer Battery Life" with "Better Performance"
   
-    # Use VBoxManage to customize the VM. For example to change memory:
-    #vb.customize ["modifyvm", :id, "--memory", "1024"]
+    # Use VBoxManage to customize the VM. For example to change cpuexecutioncap:
+    p.customize ["modifyvm", :id, "--cpuexecutioncap", "100"]
+  end
+  # Example for VirtualBox:
+  config.vm.provider "virtualbox" do |v|
+    v.name = "demo.symfony.localhost"
+    v.memory = 2048
+    v.cpus = 1
+  
+    # Use VBoxManage to customize the VM. For example to change cpuexecutioncap:
+    v.customize ["modifyvm", :id, "--cpuexecutioncap", "100"]
   end
 
   config.vm.provision "ansible" do |a|
