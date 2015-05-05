@@ -12,11 +12,11 @@ You need to install a few `Vagrant` plugins before to use `vagrant up`:
 ## Role List
 
 * init
+* nginx
+* mysql
 * php5
 * php5-cli
 * php5-fpm
-* nginx
-* mysql
 * npm
 * symfony-installer
 * composer
@@ -40,27 +40,6 @@ init_packages:
     - curl
     - wget
     - git
-```
-
-### PHP
-
-``` yaml
-php5_ppa: ppa:ondrej/php5-5.6
-php5_timezone: Europe/Kiev
-php5_display_errors: "On"
-php5_error_reporting: E_ALL
-php5_mbstring_func_overload: 0
-php5_xdebug_max_nesting_level: 250
-php5_post_max_size: 8M
-php5_upload_max_filesize: 2M
-php5_packages:
-    # php5 - will be installed by default
-    # php5-fpm - will be installed by default with php5-fpm role
-    # php5-cli - will be installed by default with php5-cli role
-    - php5-sqlite # used by Symfony Demo App as default data storage
-    - php5-mysql # could be used by Symfony Demo App as alternative data storage
-    - php5-intl # required by Symfony
-    - php5-xdebug # optional, used for convenience debug
 ```
 
 ### Nginx
@@ -97,6 +76,27 @@ mysql_databases:
 ```
 
 The `mysql` role also provide multiple databases creation, each with its own separate user and password.
+
+### PHP
+
+``` yaml
+php5_ppa: ppa:ondrej/php5-5.6
+php5_timezone: Europe/Kiev
+php5_display_errors: "On"
+php5_error_reporting: E_ALL
+php5_mbstring_func_overload: 0
+php5_xdebug_max_nesting_level: 250
+php5_post_max_size: 8M
+php5_upload_max_filesize: 2M
+php5_packages:
+    # php5 - will be installed by default
+    # php5-fpm - will be installed by default with php5-fpm role
+    # php5-cli - will be installed by default with php5-cli role
+    - php5-sqlite # used by Symfony Demo App as default data storage
+    - php5-mysql # could be used by Symfony Demo App as alternative data storage
+    - php5-intl # required by Symfony
+    - php5-xdebug # optional, used for convenience debug
+```
 
 ### npm
 

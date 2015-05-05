@@ -63,8 +63,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     p.update_guest_tools = true # Allow auto-update plugin
     p.optimize_power_consumption = false # Override "Longer Battery Life" with "Better Performance"
   
-    # Use VBoxManage to customize the VM. For example to change cpuexecutioncap:
-    p.customize ["modifyvm", :id, "--cpuexecutioncap", "100"]
+    # To customize the VM. Mounted specified ISO image on its virtual media device (cdrom).
+    #p.customize ["set", :id, "--device-set", "cdrom0", "--image", "/path/to/disk.iso", "--connect"]
   end
   # Example for VirtualBox:
   config.vm.provider "virtualbox" do |v|

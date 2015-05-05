@@ -1,7 +1,7 @@
 ---
 -   name: Uninstall Apache2 packages
     sudo: yes
-    apt: name=apache2 state=absent
+    apt: name=apache2 state=absent purge=yes force=yes
 
 -   name: Install Nginx package
     sudo: yes
