@@ -53,8 +53,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   config.vm.provider "parallels" do |p|
-    p.memory = 2048
+    p.name = "demo.symfony.localhost"
     p.cpus = 1
+    p.memory = 2048
+    p.update_guest_tools = true # Allow auto-update plugin
+    p.optimize_power_consumption = false # Override "Longer Battery Life" with "Better Performance"
   
     # Use VBoxManage to customize the VM. For example to change memory:
     #vb.customize ["modifyvm", :id, "--memory", "1024"]
