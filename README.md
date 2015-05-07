@@ -70,7 +70,7 @@ mysql_packages:
     - python-mysqldb # required to create database
 mysql_databases:
     symfony-demo:
-        name: symfony-demo
+        name: db
         user: user
         password: userpass
 ```
