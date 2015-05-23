@@ -16,7 +16,7 @@
         nginx_sites:
             symfony-demo:
                 source_config_template: symfony-standard # Nginx template name for Symfony Framework
-                server_name: demo.symfony.localhost www.demo.symfony.localhost
+                server_name: demo.symfony.local www.demo.symfony.local
                 root: /var/www/html/web
                 index: app_dev.php app.php
                 default_front_controller_name: app_dev
