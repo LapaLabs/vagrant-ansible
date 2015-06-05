@@ -45,6 +45,7 @@
             - php5-sqlite # used by Symfony Demo App as default data storage
             - php5-mysql # could be used by Symfony Demo App as alternative data storage
             - php5-intl # required by Symfony
+            - php5-curl # required by Symfony (sensiolabs/security-checker)
             - php5-xdebug # optional, used for convenience debug
         # NPM
         npm_packages:
