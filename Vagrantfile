@@ -14,7 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
-  config.vm.hostname = "demo.symfony.local"
+  config.vm.hostname = "symfony.local"
 
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "ubuntu/trusty64" # Use "virtualbox" box by default
@@ -51,13 +51,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "./application", "/var/www/html", type: "nfs"
+  config.vm.synced_folder "./application", "/var/www/html/application", type: "nfs"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for Parallels:
   config.vm.provider "parallels" do |p|
-    p.name = "demo.symfony.local"
+    p.name = "symfony.local"
     p.memory = 1024
     p.cpus = 1
     p.update_guest_tools = true # Allow auto-update plugin
@@ -68,7 +68,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
   # Example for VirtualBox:
   config.vm.provider "virtualbox" do |v|
-    v.name = "demo.symfony.local"
+    v.name = "symfony.local"
     v.memory = 1024
     v.cpus = 1
   

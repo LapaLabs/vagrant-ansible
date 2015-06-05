@@ -14,10 +14,10 @@
         nginx_packages: []
             # nginx - will be installed by default
         nginx_sites:
-            symfony-demo:
+            symfony:
                 source_config_template: symfony-standard # Nginx template name for Symfony Framework
-                server_name: demo.symfony.local www.demo.symfony.local
-                root: /var/www/html/web
+                server_name: symfony.local www.symfony.local
+                root: /var/www/html/application/web
                 index: app_dev.php app.php
                 default_front_controller_name: app_dev
         # MySQL
@@ -25,7 +25,7 @@
             # mysql-server - will be installed by default
             - python-mysqldb # required to create database
         mysql_databases:
-            symfony-demo:
+            symfony:
                 name: db
                 user: user
                 password: userpass
