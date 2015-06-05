@@ -2,20 +2,24 @@
 -   name: Uninstall Apache2 packages
     sudo: yes
     apt: name=apache2 state=absent purge=yes force=yes
+    notify: Restart Nginx
 
 -   name: Install Nginx package
     sudo: yes
     apt: name=nginx state=latest
+    notify: Restart Nginx
 
 -   name: Install Nginx packages
     sudo: yes
     apt: name={{ item }} state=latest
     with_items: nginx_packages
+    notify: Restart Nginx
 
 -   name: Create Nginx avaliable sites
     sudo: yes
     template: src={{ item.value.source_config_template }}.conf dest=/etc/nginx/sites-available/{{ item.key }}.conf
     with_dict: nginx_sites
+    notify: Restart Nginx
 
 -   name: Enable Nginx avaliable sites
     sudo: yes
@@ -31,3 +35,4 @@
                 regexp='{{ item.value.server_name }}'
                 line='127.0.0.1 {{ item.value.server_name }}'
     with_dict: nginx_sites
+    notify: Restart Nginx
