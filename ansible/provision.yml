@@ -17,7 +17,7 @@
             symfony:
                 source_config_template: symfony-standard # Nginx template name for Symfony Framework
                 server_name: symfony.local www.symfony.local
-                root: /var/www/html/application/web
+                root: /var/www/application/web
                 index: app_dev.php app.php
                 default_front_controller_name: app_dev
         # MySQL
